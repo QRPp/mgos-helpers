@@ -1,0 +1,9 @@
+author: QRPp <awesome.walrus+github@gmail.com>
+description: 'Mongoose OS coding helpers: macros etc'
+name: helpers
+type: lib
+version: 1.0
+manifest_version: 2020-08-02
+
+includes:
+  - include
