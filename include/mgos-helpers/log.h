@@ -1,10 +1,10 @@
 #pragma once
 
 #define FNERR(...) FNLOG(LL_ERROR, ##__VA_ARGS__)
-#define FNERR_AND(and, ...) \
-  do {                           \
-    FNERR(__VA_ARGS__);   \
-    and;                         \
+#define FNERR_AND(extra, ...) \
+  do {                        \
+    FNERR(__VA_ARGS__);       \
+    extra;                    \
   } while (0)
 #define FNERR_GT(...) FNERR_GTL(err, ##__VA_ARGS__)
 #define FNERR_GTL(lbl, ...) FNERR_AND(goto lbl, ##__VA_ARGS__)
