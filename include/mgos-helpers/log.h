@@ -6,6 +6,7 @@
     FNERR(__VA_ARGS__);       \
     extra;                    \
   } while (0)
+#define FNERR_CONT(...) FNERR_AND(continue, ##__VA_ARGS__)
 #define FNERR_GT(...) FNERR_GTL(err, ##__VA_ARGS__)
 #define FNERR_GTL(lbl, ...) FNERR_AND(goto lbl, ##__VA_ARGS__)
 #define FNERR_RET(ret, ...) FNERR_AND(return ret, ##__VA_ARGS__)
