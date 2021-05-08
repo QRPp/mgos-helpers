@@ -1,5 +1,8 @@
 #pragma once
 
+#include <errno.h>
+#include <string.h>
+
 #include <mgos.h>
 
 #define FNERR(...) FNLOG(LL_ERROR, ##__VA_ARGS__)
@@ -15,6 +18,10 @@
 #define FNERR_RETF(...) FNERR_RET(false, ##__VA_ARGS__)
 #define FNLOG(lvl, fmt, ...) \
   LOG(lvl, ("%s(): " fmt, __FUNCTION__, ##__VA_ARGS__))
+
+#define MALLOC_ERR_FMT "%s(%u): (%d) %s"
+#define MALLOC_ERR_ARG(obj) MALLOC_ERR_ARG_SZ(sizeof(*obj))
+#define MALLOC_ERR_ARG_SZ(sz) "malloc", (sz), errno, strerror(errno)
 
 #define MUL(num) MULS(num, "", "s")
 #define MULS(num, s, m) ((num) == 1 ? (s) : (m))
