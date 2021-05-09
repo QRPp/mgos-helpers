@@ -5,6 +5,9 @@
 
 #include <mgos.h>
 
+#define CALL_FAILED(fn) CALL_FAILED_FMT, #fn
+#define CALL_FAILED_FMT "%s() failed"
+
 #define FNERR(...) FNLOG(LL_ERROR, ##__VA_ARGS__)
 #define FNERR_AND(extra, ...) \
   do {                        \
@@ -27,10 +30,10 @@
 #define MULS(num, s, m) ((num) == 1 ? (s) : (m))
 #define ON_OFF(b) (b ? "ON" : "OFF")
 
-#define TRY_OR(extra, call, ...)                                    \
-  ({                                                                \
-    if (!call(__VA_ARGS__)) FNERR_AND(extra, "%s() failed", #call); \
-    true;                                                           \
+#define TRY_OR(extra, call, ...)                                 \
+  ({                                                             \
+    if (!call(__VA_ARGS__)) FNERR_AND(extra, CALL_FAILED(call)); \
+    true;                                                        \
   })
 #define TRY_CONT(call, ...) TRY_OR(continue, call, ##__VA_ARGS__)
 #define TRY_GT(call, ...) TRY_GTL(err, call, ##__VA_ARGS__)
