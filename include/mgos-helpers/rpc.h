@@ -1,11 +1,6 @@
 #pragma once
 
-#include <limits.h>
-#include <stdbool.h>
-
 #include <mgos_rpc.h>
-
-#define BOOL_INVAL (sizeof(bool) > sizeof(unsigned char) ? UINT_MAX : UCHAR_MAX)
 
 #define mg_rpc_errorf_and(extra, ...)      \
   do {                                     \
