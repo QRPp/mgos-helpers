@@ -15,11 +15,12 @@
     o;                                                 \
   })
 
-#define TRY_JSON_SCANF_OR(extra, _s, _sz, ...)                           \
-  ({                                                                     \
-    const char *s = _s;                                                  \
-    int sz = _sz;                                                        \
-    int rc = json_scanf(s, sz, ##__VA_ARGS__);                           \
-    if (rc < 0) FNERR_GT("%s(%.*s): %s", "json_scanf", sz, s, "failed"); \
-    rc;                                                                  \
+#define TRY_JSON_SCANF_OR(extra, _s, _sz, ...)                         \
+  ({                                                                   \
+    const char *s = _s;                                                \
+    int sz = _sz;                                                      \
+    int rc = json_scanf(s, sz, ##__VA_ARGS__);                         \
+    if (rc < 0)                                                        \
+      FNERR_AND(extra, "%s(%.*s): %s", "json_scanf", sz, s, "failed"); \
+    rc;                                                                \
   })
