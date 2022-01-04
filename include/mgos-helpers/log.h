@@ -22,6 +22,7 @@
 #define MUL(num) MULS(num, "", "s")
 #define MULS(num, s, m) ((num) == 1 ? (s) : (m))
 #define ON_OFF(b) (b ? "ON" : "OFF")
+#define YES_NO(b) (b ? "YES" : "NO")
 
 #define TRY_OR(extra, call, ...)                                 \
   ({                                                             \
