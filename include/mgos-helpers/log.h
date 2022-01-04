@@ -5,7 +5,7 @@
 #define CALL_FAILED(fn) CALL_FAILED_FMT, #fn
 #define CALL_FAILED_FMT "%s() failed"
 
-#define FNERR(...) FNLOG(LL_ERROR, ##__VA_ARGS__)
+#define FNERR(...) FNLOG(LL_ERROR, __VA_ARGS__)
 #define FNERR_AND(extra, ...) \
   do {                        \
     FNERR(__VA_ARGS__);       \
