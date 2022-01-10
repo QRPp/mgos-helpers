@@ -24,6 +24,15 @@
 #define ON_OFF(b) (b ? "ON" : "OFF")
 #define YES_NO(b) (b ? "YES" : "NO")
 
+#define TRY_AND(extra, call, ...)      \
+  ({                                   \
+    bool ok = call(__VA_ARGS__);       \
+    if (!ok) FNERR(CALL_FAILED(call)); \
+    if (ok) {                          \
+      extra;                           \
+    }                                  \
+    ok;                                \
+  })
 #define TRY_OR(extra, call, ...)                  \
   ({                                              \
     bool ok = call(__VA_ARGS__);                  \
