@@ -24,10 +24,11 @@
 #define ON_OFF(b) (b ? "ON" : "OFF")
 #define YES_NO(b) (b ? "YES" : "NO")
 
-#define TRY_OR(extra, call, ...)                                 \
-  ({                                                             \
-    if (!call(__VA_ARGS__)) FNERR_AND(extra, CALL_FAILED(call)); \
-    true;                                                        \
+#define TRY_OR(extra, call, ...)                  \
+  ({                                              \
+    bool ok = call(__VA_ARGS__);                  \
+    if (!ok) FNERR_AND(extra, CALL_FAILED(call)); \
+    ok;                                           \
   })
 #define TRY_CONT(call, ...) TRY_OR(continue, call, ##__VA_ARGS__)
 #define TRY_GT(call, ...) TRY_GTL(err, call, ##__VA_ARGS__)
